@@ -1,0 +1,41 @@
+{% set version = "5.0.0" %}
+
+package:
+  name: pyface
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/enthought/pyface
+  git_tag: {{ version }}
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - python
+    - traits
+    - pyqt
+    - setuptools
+    - pygments
+  build:
+    - python
+    - traits
+    - pyqt  # pyface requires pyqt, pyside or wxpython
+    - setuptools
+    - pygments
+
+test:
+  imports:
+    - pyface
+  commands:
+    - python -c "import pyface;"
+
+about:
+  home: http://docs.enthought.com/pyface/
+  license: BSD
+  summary: pyface - traits-capable windowing framework
+
+extra:
+  recipe-maintainers:
+    - grlee77
