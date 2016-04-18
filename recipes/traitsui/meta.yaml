@@ -1,0 +1,37 @@
+{% set version = "5.0.0" %}
+
+package:
+  name: traitsui
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/enthought/traitsui
+  git_tag: {{ version }}
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - python
+    - traits
+    - pyface
+  build:
+    - python
+    - traits
+    - pyface
+
+test:
+  imports:
+    - traitsui
+  commands:
+    - python -c "import traitsui;"
+
+about:
+  home: http://docs.enthought.com/traitsui/
+  license: BSD
+  summary: TraitsUI - Traits-capable windowing framework
+
+extra:
+  recipe-maintainers:
+    - grlee77
