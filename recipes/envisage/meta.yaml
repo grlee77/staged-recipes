@@ -1,0 +1,40 @@
+{% set version = "4.5.1" %}
+
+package:
+  name: envisage
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/enthought/envisage
+  git_tag: {{ version }}
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - python
+    - traits
+    - apptools
+    - setuptools
+  build:
+    - python
+    - traits
+    - apptools
+    - setuptools
+
+
+test:
+  imports:
+    - envisage
+  commands:
+    - python -c "import envisage;"
+
+about:
+  home: http://docs.enthought.com/envisage/
+  license: BSD
+  summary: TraitsUI - Traits-capable windowing framework
+
+extra:
+  recipe-maintainers:
+    - grlee77
