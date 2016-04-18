@@ -1,0 +1,36 @@
+{% set version = "4.5.0" %}
+
+package:
+  name: traits
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/enthought/traits
+  git_tag: {{ version }}
+  # df567bb1c77e5485e153f7e09c44e841a603de86
+
+build:
+  number: 0
+
+requirements:
+  run:
+    - python
+    - numpy
+  build:
+    - python
+    - numpy  # needed to support the traits types for arrays
+
+test:
+  imports:
+    - traits
+  commands:
+    - python -c "import traits;"
+
+about:
+  home: http://docs.enthought.com/traits
+  license: BSD
+  summary: traits - explicitly typed attributes for Python
+
+extra:
+  recipe-maintainers:
+    - grlee77
