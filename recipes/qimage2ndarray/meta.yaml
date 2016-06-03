@@ -1,0 +1,48 @@
+{% set version = "1.5" %}
+
+package:
+  name: qimage2ndarray
+  version: {{ version }}
+
+source:
+  fn: qimage2ndarray-{{ version }}.tar.gz
+  url: https://pypi.python.org/packages/source/q/qimage2ndarray/qimage2ndarray-{{ version }}.tar.gz
+  md5: 733e68a04b2cc84ca9f680e37732262f
+
+build:
+  number: 0
+  string: py{{ environ['CONDA_PY'] }}
+  script: python setup.py install
+
+requirements:
+  build:
+    - python >=3.4 # [py3k]
+    - python >=2.6,<3 # [py2k]
+    - setuptools
+    - numpy
+
+  run:
+    - python >=3.4 # [py3k]
+    - python >=2.6,<3 # [py2k]
+    - numpy
+
+test:
+  # Python imports
+  imports:
+    - qimage2ndarray
+
+  requires:
+    - nose
+    - sip
+    - qt
+    - pyqt
+
+about:
+  home: https://github.com/hmeine/qimage2ndarray
+  license: BSD License
+  summary: 'Conversion between QImages and numpy.ndarrays.'
+
+extra:
+  recipe-maintainers:
+    - nickz
+    - grlee77
