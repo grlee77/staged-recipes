@@ -1,0 +1,44 @@
+{% set version = "X.X" %}
+# TODO: fix version string
+
+package:
+  name: enaml
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/nucleic/enaml/
+  git_branch: master
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  requires:
+    - nose
+  imports:
+    - enaml
+    - enaml.fontext
+    - enaml.widgets.api
+    - enaml.qt.q_resource_helpers
+    - enaml.styling
+    - enaml.core.parser
+    - enaml.core.enaml_compiler
+  commands:
+    - nosetests ${SRC_DIR}/tests
+
+about:
+  home: http://nucleic.github.io/enaml/docs/
+  license: BSD 3-clause? (COPYING states New BSD, but 4-clauses are listed)
+  summary: Enaml is a programming language and framework for creating professional quality user interfaces with minimal effort.
+
+extra:
+  recipe-maintainers:
+    - grlee77
