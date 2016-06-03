@@ -1,0 +1,31 @@
+package:
+  name: flame
+  version: 5.1.0+32
+
+source:
+  git_url: git@github.com:flame/libflame.git
+  git_tag: 73d5662c48359ba9a6389f6a710040889dfa6b50
+
+build:
+  detect_binary_files_with_prefix: true
+  number: 1
+  skip: true  # [win]
+  features:
+    - nomkl
+
+requirements:
+  build:
+    - nomkl
+  run:
+    - nomkl
+
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libflame.a
+    - test -f ${PREFIX}/lib/libflame.so  # [linux]
+    - test -f ${PREFIX}/lib/libflame.dylib  # [osx]
+
+about:
+  home: http://www.cs.utexas.edu/~flame/web/libFLAME.html
+  license: LGPL v2.1
+  summary: High-performance object-based library for DLA computations
