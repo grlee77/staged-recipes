@@ -2,11 +2,11 @@
 # TODO: fix version string
 
 package:
-  name: envisage
+  name: enable
   version: {{ version }}
 
 source:
-  git_url: https://github.com/enthought/envisage
+  git_url: https://github.com/enthought/enable
   git_branch: master
 
 build:
@@ -39,9 +39,9 @@ test:
     - envisage
 
 about:
-  home: http://docs.enthought.com/apptools/
+  home: http://docs.enthought.com/enable
   license: BSD 3-clause
-  summary: application tools
+  summary: low-level drawing and interaction
 
 extra:
   recipe-maintainers:
