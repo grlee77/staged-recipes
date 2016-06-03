@@ -1,0 +1,52 @@
+{% set version = "X.X" %}
+# TODO: fix version string
+
+package:
+  name: traits-enaml
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/enthought/traits-enaml
+  git_branch: master
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - kiwisolver
+    - enaml
+    - ply
+    - enable
+    - traitsui
+    - mayavi
+    - unittest2 # ??
+    - coverage # ??
+#    - gcc
+  run:
+    - python
+    - kiwisolver
+    - enaml
+    - ply
+    - enable
+    - traitsui
+    - mayavi
+    - unittest2 # ??
+    - coverage # ??
+#    - libgcc
+
+test:
+  imports:
+    - traits_enaml
+
+about:
+  home: http://docs.enthought.com/traits-enaml/
+  license: BSD 3-clause
+  summary: Traits-Enaml is an extension library to facilitate interoperation of Enaml >=0.8.9 and above with Traits
+
+extra:
+  recipe-maintainers:
+    - grlee77
