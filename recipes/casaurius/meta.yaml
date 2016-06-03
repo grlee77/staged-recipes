@@ -22,13 +22,8 @@ requirements:
     - python
 
 test:
-  requires:
-    - nose
   imports:
-    - atom
-    - atom.api
-  commands:
-    - nosetests ${SRC_DIR}/tests
+    - casuarius
 
 about:
   home: https://github.com/nucleic/atom
