@@ -1,0 +1,48 @@
+{% set version = "4.5.1.1" %}
+# TODO: fix version string
+
+package:
+  name: envisage
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/enthought/envisage
+  git_branch: master
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy
+    - swig
+    - cython  # [osx]
+# also need X11-devel on linux
+
+  run:
+    - python
+    - numpy
+    - pillow
+    - traits
+    - pyface
+    - traitsui
+    - six
+    - apptools  # optional
+    - kiwi  # or kiwisolver?  (optional)
+#  various other optional backends
+
+test:
+  imports:
+    - envisage
+
+about:
+  home: http://docs.enthought.com/apptools/
+  license: BSD 3-clause
+  summary: application tools
+
+extra:
+  recipe-maintainers:
+    - grlee77
