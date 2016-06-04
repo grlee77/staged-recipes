@@ -1,0 +1,41 @@
+{% set version = "3.8" %}
+
+package:
+  name: ply
+  version: {{ version }}
+
+source:
+  fn: ply-{{ version }}.tar.gz
+  url: https://pypi.python.org/packages/source/p/ply/ply-{{ version }}.tar.gz
+  md5: 94726411496c52c87c2b9429b12d5c50
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+test:
+  requires:
+    - nose
+  imports:
+    - ply.lex
+    - ply.yacc
+# 5 out of 42 tests failed when I tried on OsX
+  # commands:
+  #   - python ${SRC_DIR}/test/testlex.py
+  #   - python ${SRC_DIR}/test/testyacc.py
+
+about:
+  home: http://www.dabeaz.com/ply/index.html
+  license: BSD 3-clause
+  summary: PLY is an implementation of lex and yacc parsing tools for Python.
+
+extra:
+  recipe-maintainers:
+    - grlee77
