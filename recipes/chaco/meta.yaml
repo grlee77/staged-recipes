@@ -1,0 +1,48 @@
+{% set version = "4.5.0.1" %}
+# TODO: fix version string
+
+package:
+  name: chaco
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/enthought/chaco
+  git_branch: master
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - numpy
+#    - swig
+    - cython  # [osx]
+
+  run:
+    - python
+    - numpy
+    - enable
+#    - distribute
+#    - traits
+#    - traitsui
+#    - kiwi
+#  various other optional backends
+
+test:
+  requires:
+    - nose
+    - nose-exclude
+  imports:
+    - envisage
+
+about:
+  home: http://docs.enthought.com/chaco
+  license: BSD 3-clause
+  summary: Chaco is a Python package for building interactive and custom 2-D plots
+
+extra:
+  recipe-maintainers:
+    - grlee77
