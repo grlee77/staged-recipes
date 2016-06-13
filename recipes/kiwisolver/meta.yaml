@@ -2,7 +2,7 @@
 # TODO: fix version string
 
 package:
-  name: kiwi
+  name: kiwisolver
   version: {{ version }}
 
 source:
