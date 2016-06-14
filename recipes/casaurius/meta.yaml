@@ -1,4 +1,4 @@
-{% set version = "1.1" %}
+{% set version = "1.1.post2" %}
 # TODO: fix version string
 
 package:
@@ -6,20 +6,26 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/enthought/casuarius
+  git_url: https://github.com/enthought/casuarius  # /commit/40ff339f0dbb67988acce41f5dd86845d3930825
   git_branch: master
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+#  script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
     - python
     - setuptools
     - cython
+    - gcc  # [osx]
   run:
     - python
+    - libgcc  # [osx]
+
+# before adding gcc/libgcc I got the following error
+# ImportError: dlopen(/Users/lee8rx/anaconda/envs/_test/lib/python3.5/site-packages/casuarius.cpython-35m-darwin.so, 2): Symbol not found: __ZNKSt5ctypeIcE13_M_widen_initEv
+# afterwards, on python 3 I got 'NameError: basestring'.  so apparently not python3 compatible
 
 test:
   imports:
