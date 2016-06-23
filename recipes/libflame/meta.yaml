@@ -1,23 +1,31 @@
+{% set version = "5.1.0+34" %}
+
+{% set variant = "openblas" %}
+
 package:
-  name: flame
-  version: 5.1.0+32
+  name: libflame
+  version: {{ version }}
 
 source:
   git_url: git@github.com:flame/libflame.git
-  git_tag: 73d5662c48359ba9a6389f6a710040889dfa6b50
+  git_tag: 6e6ccb273c59eee7d61995a8edf821c125134af3
 
 build:
   detect_binary_files_with_prefix: true
-  number: 1
   skip: true  # [win]
+  number: 200
   features:
-    - nomkl
+    - blas_{{ variant }}
 
 requirements:
   build:
-    - nomkl
+    - blas 1.1 {{ variant }}
+    - openblas 0.2.18*
+    - gcc
   run:
-    - nomkl
+    - blas 1.1 {{ variant }}
+    - openblas 0.2.18*
+    - libgcc
 
 test:
   commands:
