@@ -1,0 +1,43 @@
+{% set version = "v0.7.3" %}
+
+package:
+  name: cysparse
+  version: {{ version }}
+
+source:
+  fn: cysparse-{{ version }}.tar.bz2
+  url: https://github.com/PythonOptimizers/cysparse/archive/v0.7.3.tar.gz
+  md5: d0d0b5789dda46e948ccaa7b149dd279
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - cython
+#    - jinja2
+#    - configparser
+#    - markupsafe
+#    - fortranformat
+    - numpy x.x
+  run:
+    - python
+    - numpy x.x
+
+test:
+  requires:
+    - nose
+  imports:
+    - cysparse
+
+about:
+  home: https://github.com/PythonOptimizers/cysparse
+  license: ??
+  summary: A fast sparse matrix library for Python/Cython.
+
+extra:
+  recipe-maintainers:
+    - grlee77
