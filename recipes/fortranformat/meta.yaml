@@ -1,0 +1,33 @@
+{% set version = "0.2.5" %}
+
+package:
+  name: fortranformat
+  version: {{ version }}
+
+source:
+  fn: fortranformat-{{ version }}.tar.bz2
+  url: https://pypi.io/packages/source/f/fortranformat/fortranformat-{{ version }}.tar.gz
+  sha256: 6b5fbc1f129c7a70543c3a81f334fb4d57f07df2834b22ce69f6d7e8539cd3f9
+
+build:
+  number: 0
+  script: python setup.py install
+
+requirements:
+  build:
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - fortranformat
+
+about:
+  home: https://bitbucket.org/brendanarnold/py-fortranformat/wiki/Home
+  license: MIT
+  summary: Allows Python programs to read and write according to Fortran FORMAT statements.
+
+extra:
+  recipe-maintainers:
+    - grlee77

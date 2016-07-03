@@ -1,0 +1,64 @@
+{% set version = "3.12.5" %}
+{% if linux %}
+    {% set libext = ".so" %}
+{% else %}
+    {% set libext = ".dylib" %}
+{% endif %}
+
+package:
+  name: ipopt
+  version: {{ version }}
+
+source:
+  fn:  ipopt-{{ version }}.tar.gz
+  url: http://www.coin-or.org/download/source/Ipopt/Ipopt-{{ version }}.tgz
+  sha256: 53e7af6eefcb6de1f8e936c9c887c7bcb5a9fa4fcf7673a227f16de131147325
+
+build:
+  number: 0
+  skip: true  # [win]
+
+requirements:
+  build:
+    - gcc
+    - openblas
+    # - python
+    # - cmake
+    # - boost
+    # - gsl  # optional
+    # - nlopt  # optional
+    # - ipopt  # optional
+    # - snopt (proprietary)  # optional
+    # - pykep  # optional:  http://esa.github.io/pykep/
+    # - numpy
+    # - cython
+    # - setuptools
+
+    # other optional:  SNOPT, NLOPT, IPOPT, SciPy, GSL, PyKEP
+  run:
+    - libgcc
+    - openblas
+    # - python
+    # - scipy  # optional
+    # - nlopt  # optional
+    # - gsl  # optional
+    # - ipopt  # optional
+    # - snopt (proprietary) # optional
+    # - pykep  # optional
+    # - numpy
+
+
+test:
+  # imports:
+  #   - cylp
+  commands:
+    #- test -f "${PREFIX}/lib/libCbc{{ libext }}"
+
+about:
+  home: https://projects.coin-or.org/Ipopt
+  license: Eclipse Public License v1.0
+  summary: Ipopt (Interior Point OPTimizer, pronounced eye-pea-Opt) is a software package for large-scale ​nonlinear optimization.
+
+extra:
+  recipe-maintainers:
+    - grlee77

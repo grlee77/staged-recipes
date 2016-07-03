@@ -1,0 +1,57 @@
+{% set version = "TODO" %}
+
+package:
+  name: pygmo
+  version: {{ version }}
+
+source:
+  url: https://github.com/coin-or/Ipopt/archive/releases/3.12.5.tar.gz
+  # git_tag: 676884
+  git_url: https://github.com/jjhelmus/CyLP
+  git_branch: py3
+# Note: Python 3 support is pending on jjhelmus's PR:
+#     https://github.com/coin-or/CyLP/pull/28
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - cmake
+    - boost
+    - gsl  # optional
+    - nlopt  # optional
+    # - ipopt  # optional
+    # - snopt (proprietary)  # optional
+    # - pykep  # optional:  http://esa.github.io/pykep/
+    # - numpy
+    # - cython
+    # - setuptools
+
+    # other optional:  SNOPT, NLOPT, IPOPT, SciPy, GSL, PyKEP
+  run:
+    - python
+    - scipy  # optional
+    - nlopt  # optional
+    - gsl  # optional
+    # - ipopt  # optional
+    # - snopt (proprietary) # optional
+    # - pykep  # optional
+    # - numpy
+
+
+test:
+  imports:
+    - cylp
+#  commands:
+#    - python -m unittest discover
+
+about:
+  home: http://mpy.github.io/CyLPdoc/
+  license: Common Public License Version 1.0
+  summary: A Python interface for CLP, CBC, and CGL.
+
+extra:
+  recipe-maintainers:
+    - grlee77

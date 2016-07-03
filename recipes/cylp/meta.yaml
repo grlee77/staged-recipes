@@ -1,0 +1,44 @@
+{% set version = "0.7.3+11" %}
+
+package:
+  name: cylp
+  version: {{ version }}
+
+source:
+  # git_url: https://github.com/coin-or/CyLP
+  # git_tag: 2ddb820cb62d6568d8b077e3955c0bfd13038784
+  git_url: https://github.com/jjhelmus/CyLP
+  git_branch: py3
+# Note: Python 3 support is pending on jjhelmus's PR:
+#     https://github.com/coin-or/CyLP/pull/28
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - coincbc
+    - numpy
+    - cython
+    - setuptools
+  run:
+    - python
+    - coincbc
+    - numpy
+    - scipy
+
+test:
+  imports:
+    - cylp
+#  commands:
+#    - python -m unittest discover
+
+about:
+  home: http://mpy.github.io/CyLPdoc/
+  license: Common Public License Version 1.0
+  summary: A Python interface for CLP, CBC, and CGL.
+
+extra:
+  recipe-maintainers:
+    - grlee77
