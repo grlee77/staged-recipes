@@ -1,0 +1,47 @@
+{% set version = "1.3.2" %}
+
+package:
+  name: ismrmrd-python
+  version: {{ version }}
+
+source:
+    fn: ismrmrd-python{{ version }}.tar.gz
+    url: https://github.com/ismrmrd/ismrmrd-python/archive/v{{ version }}.tar.gz
+    sha256: 67eba820981fd2b051ef0c6c362cc2f172b5334004790ae87d5f7f368b9a9044
+    patches:
+      - constants.patch   # commit 64af735 from master (for ismrmrd-1.3.3)
+
+build:
+  number: 0
+  skip: True  # [win]
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - ismrmrd 1.3.3
+    - pyxb
+    - h5py
+    - nose
+  run:
+    - python
+    - ismrmrd 1.3.3
+    - pyxb
+    - h5py
+    - numpy x.x
+  test:
+    - nose
+
+test:
+  commands:
+    - python -c "import ismrmrd"
+    - cd ${SRC_DIR}/tests && nosetests test*.py
+
+about:
+    home: https://ismrmrd.github.io
+    license: ISMRMRD SOFTWARE LICENSE
+    summary: 'python implementation of the ISMRM Raw Data Format for MRI Data.'
+
+extra:
+    recipe-maintainers:
+      - grlee77
