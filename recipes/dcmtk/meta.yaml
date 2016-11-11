@@ -1,0 +1,41 @@
+{% set version = "3.6.1" %}
+
+package:
+    name: dcmtk
+    version: {{ version }}
+
+source:
+    fn: dcmtk-{{ version }}.tar.gz
+    # url: http://dicom.offis.de/download/dcmtk/dcmtk360/dcmtk-{{ version }}.tar.gz
+    url: http://dicom.offis.de/download/dcmtk/snapshot/dcmtk-{{ version }}_20161102.tar.gz
+    # sha256: cfc509701122adfa359f1ee160e943c1548c7696b607dbb646c5a06f015ed33a
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+    build:
+      - cmake
+      - openssl 1.0.*
+      - libpng >=1.6.23,<1.7
+      - libtiff 4.0.*
+      - libxml2 2.9.3
+      - zlib 1.2.*
+    run:
+      - openssl 1.0.*
+      - libpng >=1.6.21,<1.7
+      - libtiff 4.0.*
+      - libxml2
+      - zlib 1.2.*
+
+test:
+  commands:
+    - test -d ${PREFIX}/include/dcmtk
+    - test -f ${PREFIX}/lib/
+    - cd ${SRC_DIR}/tests && nosetests test*.py
+
+
+about:
+    home: http://dicom.offis.de
+    summary: "DCMTK is a collection of libraries and applications implementing large parts the DICOM standard"
