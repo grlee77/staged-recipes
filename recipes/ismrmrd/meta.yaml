@@ -1,0 +1,56 @@
+{% set version = "1.3.3" %}
+
+{% set dyn_ext = ".so" %}  # [linux]
+{% set dyn_ext = ".dylib" %}  # [osx]
+{% set dyn_ext = ".dll" %}  # [win]
+
+{% set exe = ".exe" %}  # [win]
+{% set exe = "" %}  # [unix]
+
+package:
+  name: ismrmrd
+  version: {{ version }}
+
+source:
+    fn: ismrmrd-{{ version }}.tar.gz
+    url: https://github.com/ismrmrd/ismrmrd/archive/v{{ version }}.tar.gz
+    sha256: a40495e59ef6c8b14ce7851685df4b0b70df6832d8e9906f90a3689145bbfc70
+
+build:
+  number: 0
+  # currently no windows build for the fftw dependency
+  skip: True  # [win]
+
+requirements:
+  build:
+    - cmake
+    - toolchain
+    - boost 1.63.*
+    - hdf5 1.8.17|1.8.17.*  # [unix]
+    - fftw
+  run:
+    - boost 1.63.*
+    - hdf5 1.8.17|1.8.17.*  # [unix]
+    - fftw
+
+test:
+  commands:
+    - test -f "${PREFIX}/bin/ismrmrd_c_example{{ exe }}"
+    - test -f "${PREFIX}/bin/ismrmrd_generate_cartesian_shepp_logan{{ exe }}"
+    - test -f "${PREFIX}/bin/ismrmrd_info{{ exe }}"
+    - test -f "${PREFIX}/bin/ismrmrd_recon_cartesian_2d{{ exe }}"
+    - test -f "${PREFIX}/bin/ismrmrd_test_xml{{ exe }}"
+    - test -f "${PREFIX}/lib/libismrmrd{{ dyn_ext }}"
+    - test -f "${PREFIX}/share/ismrmrd/schema/ismrmrd.xsd
+    - test -d "${PREFIX}/share/ismrmrd/cmake
+    - test -d "${PREFIX}/share/ismrmrd/matlab
+
+about:
+    home: https://ismrmrd.github.io
+    license: ISMRMRD
+    license_file: LICENSE
+    summary: ISMRM Raw Data Format (for MRI Data)
+
+extra:
+    recipe-maintainers:
+      - grlee77
