@@ -1,0 +1,51 @@
+{% set version = "0.1.0" %}
+
+{% set dyn_ext = ".so" %}  # [linux]
+{% set dyn_ext = ".dylib" %}  # [osx]
+{% set dyn_ext = ".dll" %}  # [win]
+
+{% set exe = ".exe" %}  # [win]
+{% set exe = "" %}  # [unix]
+
+package:
+  name: philips_to_ismrmrd
+  version: {{ version }}
+
+source:
+    fn: philips_to_ismrmrd-{{ version }}.tar.gz
+    url: https://github.com/ismrmrd/philips_to_ismrmrd/archive/v{{ version }}.tar.gz
+    sha256: 160067d2d14923566f506d95c12ba6e207ceea0205c6e82da7e43594924e9ced
+
+build:
+  number: 0
+#   skip: True  # [win]
+
+requirements:
+  build:
+    - cmake
+    - toolchain
+#     - boost 1.63.*
+#     - hdf5 1.8.17|1.8.17.*  # [unix]
+    - ismrmrd
+    - libxml2
+    - libxslt
+  run:
+#    - boost 1.63.*
+#    - hdf5 1.8.17|1.8.17.*  # [unix]
+    - ismrmrd
+    - libxml2
+    - libxslt
+
+test:
+  commands:
+    - test -f "${PREFIX}/bin/philips_to_ismrmrd{{ dyn_ext }}"
+
+about:
+    home: https://github.com/ismrmrd/philips_to_ismrmrd
+    license: ISMRMRD
+    license_file: LICENSE
+    summary: Philips raw data to ISMRMRD converter.
+
+extra:
+    recipe-maintainers:
+      - grlee77
