@@ -3,6 +3,8 @@
 mkdir build
 cd build
 
+export ISMRMRD_HOME="${PREFIX}"
+
 # HDF5_C_INCLUDE_DIR specified to help cmake find hdf5.h
 if [[ `uname` == 'Darwin' ]]; then
     # -stdlib=libc++ added to avoid clang error when linking to boost
