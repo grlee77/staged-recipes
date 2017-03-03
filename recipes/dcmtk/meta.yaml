@@ -1,4 +1,10 @@
-{% set version = "3.6.1" %}
+{% set version = "3.6.1_20170228" %}
+# Note: this is a snapshot release as 3.6.0 is quite old (released in 2011)
+
+# According to the following roadmap, a new spashot is due Feb 28, 2017
+# and an RC1 release March 31, 2017
+# public release of 3.6.2 at end of April
+# http://support.dcmtk.org/redmine/projects/dcmtk/roadmap
 
 package:
     name: dcmtk
@@ -7,7 +13,7 @@ package:
 source:
     fn: dcmtk-{{ version }}.tar.gz
     # url: http://dicom.offis.de/download/dcmtk/dcmtk360/dcmtk-{{ version }}.tar.gz
-    url: http://dicom.offis.de/download/dcmtk/snapshot/dcmtk-{{ version }}_20161102.tar.gz
+    url: http://dicom.offis.de/download/dcmtk/snapshot/dcmtk-{{ version }}.tar.gz
     # sha256: cfc509701122adfa359f1ee160e943c1548c7696b607dbb646c5a06f015ed33a
 
 build:
