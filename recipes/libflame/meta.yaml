@@ -12,8 +12,12 @@ build:
 
 requirements:
   build:
+    - toolchain
+    - gcc
+    - libgfortran
 
   run:
+    - libgfortran
 
 test:
   commands:
