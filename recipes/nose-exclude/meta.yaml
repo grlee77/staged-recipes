@@ -1,0 +1,42 @@
+{% set version = "0.5.0" %}
+
+package:
+  name: nose-exclude
+  version: {{ version }}
+
+source:
+  fn: nose-exclude-{{ version }}.tar.gz
+  url: https://github.com/kgrandis/nose-exclude/archive/{{ version }}.tar.gz
+  sha256: f78fa8b41eeb815f0486414f710f1eea0949e346cfb11d59ba6295ed69e84304
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - nose
+
+  run:
+    - python
+    - setuptools
+    - nose
+
+test:
+  requires:
+    - nose
+  commands:
+    # --exclude-dir option depends on the nose-exclude plugin being present
+    - nosetests --exclude-dir=test_dirs
+
+about:
+  home: https://github.com/kgrandis/nose-exclude
+  license: LGPL v2.1
+  # license_file: LICENSE  # currently missign from the package's MANIFEST.in
+  summary: Exclude specific directories from nosetests runs.
+
+extra:
+  recipe-maintainers:
+    - grlee77
