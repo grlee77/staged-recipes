@@ -38,7 +38,7 @@ test:
     - nose
     - nose-exclude
   imports:
-    - envisage
+    - chaco
 
 about:
   home: http://docs.enthought.com/chaco

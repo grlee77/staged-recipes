@@ -7,7 +7,7 @@ package:
 source:
   fn: nose-exclude-{{ version }}.tar.gz
   url: https://github.com/kgrandis/nose-exclude/archive/{{ version }}.tar.gz
-  sha256: f78fa8b41eeb815f0486414f710f1eea0949e346cfb11d59ba6295ed69e84304
+  sha256: fc6a5f15fdc3b49c80dfc84b05e9ad4afb297df3a61c71361edfc868c711cbc4
 
 build:
   number: 0

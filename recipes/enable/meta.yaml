@@ -22,7 +22,7 @@ requirements:
     - numpy
     - swig
     - cython  # [osx]
-# also need X11-devel on linux
+    - xorg-libx11 1.6.*  # [linux]
 
   run:
     - python
@@ -33,6 +33,7 @@ requirements:
     - traitsui
     - six
     - apptools  # optional
+    - xorg-libx11 1.6.*  # [linux]
 #    - kiwi  # or kiwisolver?  (optional)
 #  various other optional backends
 
