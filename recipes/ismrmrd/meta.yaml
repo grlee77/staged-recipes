@@ -44,6 +44,7 @@ test:
     - test -f "${PREFIX}/share/ismrmrd/schema/ismrmrd.xsd"
     - test -d "${PREFIX}/share/ismrmrd/cmake"
     - test -d "${PREFIX}/share/ismrmrd/matlab"
+    - ismrmrd_c_example
 
 about:
     home: https://ismrmrd.github.io
