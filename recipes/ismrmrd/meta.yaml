@@ -25,11 +25,11 @@ requirements:
   build:
     - cmake
     - toolchain
-    - boost 1.63.*
+    - boost 1.64.*
     - hdf5 1.8.17|1.8.17.*  # [unix]
     - fftw
   run:
-    - boost 1.63.*
+    - boost 1.64.*
     - hdf5 1.8.17|1.8.17.*  # [unix]
     - fftw
 
