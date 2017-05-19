@@ -1,0 +1,49 @@
+{% set version = "0.5.1" %}
+
+{% set dyn_ext = ".so" %}  # [linux]
+{% set dyn_ext = ".dylib" %}  # [osx]
+{% set dyn_ext = ".dll" %}  # [win]
+
+{% set static_ext = ".a" %}  # [unix]
+{% set static_ext = ".lib" %}  # [win]
+
+{% set exe = ".exe" %}  # [win]
+{% set exe = "" %}  # [unix]
+
+package:
+  name: zfp
+  version: {{ version }}
+
+source:
+    fn: zfp-{{ version }}.tar.gz
+    url: https://computation.llnl.gov/projects/floating-point-compression/download/zfp-{{ version }}.tar.gz
+    sha256: 867c04cf965f1c70d9725b396c6e1b5d29db55b0d69b8e87a995aaebd221b830
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+  build:
+    - cmake  # [win]
+    - toolchain
+  run:
+
+test:
+  commands:
+      - test -f "${PREFIX}/lib/libzfp{{ static_ext }}"
+      - test -f "${PREFIX}/lib/libzfp{{ dyn_ext }}"
+      - test -d "${PREFIX}/include/zfp"
+      - test -f "${PREFIX}/include/zfp.h"
+      - test -f "${PREFIX}/include/bitstream.h"
+      - test -f "${PREFIX}/bin/zfp{{ exe }}"
+
+about:
+    home: https://computation.llnl.gov/projects/floating-point-compression
+    license: BSD 3-clause
+    license_file: LICENSE
+    summary: An open source C/C++ library for compressed numerical arrays that support high throughput read and write random access.
+
+extra:
+    recipe-maintainers:
+      - grlee77
