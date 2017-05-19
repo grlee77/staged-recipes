@@ -1,4 +1,5 @@
-{% set version = "1.3.2" %}
+{% set version = "1.3.3" %}
+
 
 package:
   name: ismrmrd-python
@@ -7,9 +8,7 @@ package:
 source:
     fn: ismrmrd-python{{ version }}.tar.gz
     url: https://github.com/ismrmrd/ismrmrd-python/archive/v{{ version }}.tar.gz
-    sha256: 67eba820981fd2b051ef0c6c362cc2f172b5334004790ae87d5f7f368b9a9044
-    patches:
-      - constants.patch   # commit 64af735 from master (for ismrmrd-1.3.3)
+    sha256: ea38aaed99fd4e7d6d18607a4df9f8a2957a1ccf2bb370f71821d762debf625d
 
 build:
   number: 0
