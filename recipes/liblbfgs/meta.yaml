@@ -1,0 +1,37 @@
+{% set version = "1.10" %}
+
+package:
+    name: liblbfgs
+    version: {{ version }}
+
+source:
+    fn: liblbfgs-{{ version }}.tar.gz
+    url: https://github.com/downloads/chokkan/liblbfgs/liblbfgs-{{ version }}.tar.gz
+
+build:
+  number: 0
+  skip: True  # [win]
+
+requirements:
+    build:
+      - toolchain
+    run:
+
+test:
+  commands:
+    - test -d ${PREFIX}/share/doc/liblbfgs
+    - test -f ${PREFIX}/include/lbfgs.h
+    - test -f ${PREFIX}/lib/liblbfgs.a
+    - test -f ${PREFIX}/lib/liblbfgs.la
+    - test -f ${PREFIX}/lib/liblbfgs${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/liblbfgs-{{ version }}${SHLIB_EXT}
+
+about:
+    home: http://www.chokkan.org/software/liblbfgs/
+    license: MIT
+    license_file: COPYING
+    summary: A library of the Limited-memory Broyden-Fletcher-Goldfarb-Shanno (L-BFGS) method.
+
+extra:
+  recipe-maintainers:
+    - grlee77
